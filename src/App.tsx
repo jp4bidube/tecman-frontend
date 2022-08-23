@@ -1,7 +1,12 @@
 import { MainRoutes } from './routes';
+import { ThemeProvider } from './theme';
 
 function App() {
-  return <MainRoutes />;
+  return (
+    <ThemeProvider>
+      <MainRoutes />
+    </ThemeProvider>
+  );
 }
 
 export default App;
