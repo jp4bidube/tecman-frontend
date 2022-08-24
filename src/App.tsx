@@ -1,9 +1,12 @@
 import { MainRoutes } from './routes';
-import { ThemeProvider } from './theme';
+import { ThemeProvider } from '@mui/material/styles';
+import CssBaseline from '@mui/material/CssBaseline';
+import { theme } from './Theme';
 
 function App() {
   return (
-    <ThemeProvider>
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
       <MainRoutes />
     </ThemeProvider>
   );
