@@ -1,58 +1,47 @@
-import { useState } from 'react';
-import {
-  AppBar,
-  Box,
-  Button,
-  Drawer,
-  IconButton,
-  Toolbar,
-  Typography,
-  useTheme,
-} from '@mui/material';
-import { Outlet } from 'react-router-dom';
-import { Menu } from '@mui/icons-material';
+import * as React from 'react';
+import { useTheme } from '@mui/material/styles';
+import Box from '@mui/material/Box';
+import Drawer from '@mui/material/Drawer';
+import CssBaseline from '@mui/material/CssBaseline';
+import Toolbar from '@mui/material/Toolbar';
+import List from '@mui/material/List';
+import Typography from '@mui/material/Typography';
+import Divider from '@mui/material/Divider';
+import IconButton from '@mui/material/IconButton';
+import MenuIcon from '@mui/icons-material/Menu';
+import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
+import ChevronRightIcon from '@mui/icons-material/ChevronRight';
+import ListItem from '@mui/material/ListItem';
+import ListItemButton from '@mui/material/ListItemButton';
+import ListItemIcon from '@mui/material/ListItemIcon';
+import ListItemText from '@mui/material/ListItemText';
+import InboxIcon from '@mui/icons-material/MoveToInbox';
+import MailIcon from '@mui/icons-material/Mail';
+import { DrawerHeader, Main } from './styles';
+import { Outlet, useNavigate } from 'react-router-dom';
+import { NavTopBar } from './components/AppBar';
+import { DrawerPanel } from './components/DrawerPanel';
 
 export const Layout = () => {
-  const theme = useTheme();
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = React.useState(true);
+
+  const handleDrawerOpen = () => {
+    setOpen(true);
+  };
+
+  const handleDrawerClose = () => {
+    setOpen(false);
+  };
 
   return (
-    <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static">
-        <Toolbar>
-          <IconButton
-            size="large"
-            edge="start"
-            color="inherit"
-            aria-label="menu"
-            onClick={() => setOpen(!open)}
-            sx={{
-              mr: 2,
-              ...(open && { display: 'none' }),
-            }}
-          >
-            <Menu />
-          </IconButton>
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            News
-          </Typography>
-          <Button color="inherit">Login</Button>
-        </Toolbar>
-      </AppBar>
-      <Drawer
-        sx={{
-          width: 240,
-          flexShrink: 0,
-          '& .MuiDrawer-paper': {
-            width: 240,
-            boxSizing: 'border-box',
-          },
-        }}
-        variant="persistent"
-        anchor="left"
-        open={open}
-      ></Drawer>
-      <Outlet />
+    <Box sx={{ display: 'flex' }}>
+      <CssBaseline />
+      <NavTopBar open={open} handleDrawerOpen={handleDrawerOpen} />
+      <DrawerPanel open={open} handleDrawerClose={handleDrawerClose} />
+      <Main open={open}>
+        <DrawerHeader />
+        <Outlet />
+      </Main>
     </Box>
   );
 };

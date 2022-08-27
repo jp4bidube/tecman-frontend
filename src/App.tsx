@@ -1,14 +1,17 @@
 import { MainRoutes } from './routes';
-import { ThemeProvider } from '@mui/material/styles';
+import { ThemeProvider as MuiThemeProvider } from '@mui/material/styles';
+import { ThemeProvider } from 'styled-components';
 import CssBaseline from '@mui/material/CssBaseline';
 import { theme } from './Theme';
 
 function App() {
   return (
-    <ThemeProvider theme={theme}>
-      <CssBaseline />
-      <MainRoutes />
-    </ThemeProvider>
+    <MuiThemeProvider theme={theme}>
+      <ThemeProvider theme={theme}>
+        <CssBaseline />
+        <MainRoutes />
+      </ThemeProvider>
+    </MuiThemeProvider>
   );
 }
 
