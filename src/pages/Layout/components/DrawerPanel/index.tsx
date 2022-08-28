@@ -1,10 +1,4 @@
-import {
-  AdminPanelSettings,
-  Build,
-  Grading,
-  ListAlt,
-  People,
-} from '@mui/icons-material';
+import { Build } from '@mui/icons-material';
 import {
   Box,
   Divider,
@@ -23,13 +17,25 @@ import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import { CollapseMenu } from './CollapseMenu';
 import { useNavigate } from 'react-router-dom';
+import { MenuItem, menuList } from './sideMenu';
+import useStore from '../../../../store';
 
 type DrawerPanelProps = { open: boolean; handleDrawerClose: () => void };
 
 export const DrawerPanel = ({ open, handleDrawerClose }: DrawerPanelProps) => {
+  const store = useStore();
   const navigate = useNavigate();
   const drawerWidth = 248;
   const theme = useTheme();
+
+  const handleClick = (item: MenuItem) => {
+    store.setNewBreadcrumbs({
+      name: item.title,
+      path: item.path,
+      icon: item.icon,
+    });
+  };
+
   return (
     <Drawer
       sx={{
@@ -68,25 +74,7 @@ export const DrawerPanel = ({ open, handleDrawerClose }: DrawerPanelProps) => {
       </DrawerHeader>
       <Divider />
       <List>
-        {[
-          { title: 'Clientes', icon: <People />, path: '/clients' },
-          {
-            title: 'Ordens de Serviço',
-            icon: <Grading />,
-            path: '/service-orders',
-          },
-          { title: 'Garantias', icon: <ListAlt />, path: '/guarantees' },
-          {
-            title: 'Administração',
-            icon: <AdminPanelSettings />,
-            path: '/',
-            subMenu: true,
-            subMenuItems: [
-              { title: 'Usuários', path: '/users' },
-              { title: 'Técnicos', path: '/employees' },
-            ],
-          },
-        ].map((item, index) => {
+        {menuList.map((item, index) => {
           return item.subMenu ? (
             <CollapseMenu
               index={index}
@@ -103,7 +91,7 @@ export const DrawerPanel = ({ open, handleDrawerClose }: DrawerPanelProps) => {
                     backgroundColor: theme.palette.grey[200],
                   },
                 }}
-                onClick={() => navigate(item.path)}
+                onClick={() => handleClick(item)}
               >
                 <ListItemIcon>{item.icon}</ListItemIcon>
                 <ListItemText

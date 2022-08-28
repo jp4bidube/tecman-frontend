@@ -9,7 +9,7 @@ import { useNavigate } from 'react-router-dom';
 
 type CollapseMenProps = {
   item: { title: string; icon: React.ReactNode };
-  subItems: Array<{ title: string; path: string }>;
+  subItems: Array<{ title: string; path: string }> | undefined;
   index: number;
 };
 
@@ -59,27 +59,28 @@ export const CollapseMenu = ({ item, index, subItems }: CollapseMenProps) => {
             },
           }}
         >
-          {subItems.map((item) => (
-            <Box paddingLeft={8} paddingBottom={1}>
-              <ListItemButton
-                sx={{
-                  borderRadius: '8px',
-                  cursor: 'pointer',
-                  padding: '0 .5rem',
-                  ':hover': {
-                    backgroundColor: theme.palette.grey[200],
-                  },
-                  width: '80%',
-                }}
-                onClick={() => navigate(item.path)}
-              >
-                <Box display="inline-flex" gap={2} alignItems="center">
-                  <Typography variant="h6"> • </Typography>
-                  <Typography variant="body2">{item.title}</Typography>
-                </Box>
-              </ListItemButton>
-            </Box>
-          ))}
+          {subItems &&
+            subItems.map((item) => (
+              <Box paddingLeft={8} paddingBottom={1}>
+                <ListItemButton
+                  sx={{
+                    borderRadius: '8px',
+                    cursor: 'pointer',
+                    padding: '0 .5rem',
+                    ':hover': {
+                      backgroundColor: theme.palette.grey[200],
+                    },
+                    width: '80%',
+                  }}
+                  onClick={() => navigate(item.path)}
+                >
+                  <Box display="inline-flex" gap={2} alignItems="center">
+                    <Typography variant="h6"> • </Typography>
+                    <Typography variant="body2">{item.title}</Typography>
+                  </Box>
+                </ListItemButton>
+              </Box>
+            ))}
         </List>
       </Collapse>
     </>

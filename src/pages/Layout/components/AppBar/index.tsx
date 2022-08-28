@@ -6,7 +6,6 @@ import { AppBar } from '../../styles';
 import MenuIcon from '@mui/icons-material/Menu';
 import {
   Avatar,
-  Breadcrumbs,
   Divider,
   ListItemIcon,
   Menu,
@@ -16,6 +15,7 @@ import {
 } from '@mui/material/';
 import { AccountCircle, Logout } from '@mui/icons-material';
 import { useNavigate } from 'react-router-dom';
+import { Breadcrumbs } from '../Breadcrumbs';
 type AppBarProps = {
   open: boolean;
   handleDrawerOpen: () => void;
@@ -46,9 +46,7 @@ export const NavTopBar = ({ open, handleDrawerOpen }: AppBarProps) => {
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant="h5" noWrap component="div">
-            <Breadcrumbs />
-          </Typography>
+          <Breadcrumbs />
         </Box>
         <Box display="flex" alignItems="center" gap={2}>
           <Typography variant="h6" noWrap component="div">

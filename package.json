@@ -18,7 +18,8 @@
     "react-dom": "^18.2.0",
     "react-router-dom": "6",
     "styled-components": "^5.3.5",
-    "yup": "^0.32.11"
+    "yup": "^0.32.11",
+    "zustand": "^4.1.1"
   },
   "resolutions": {
     "@mui/styled-engine": "npm:@mui/styled-engine-sc@latest"
