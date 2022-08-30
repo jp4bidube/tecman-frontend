@@ -23,7 +23,9 @@ export const Layout = () => {
       <DrawerPanel open={open} handleDrawerClose={handleDrawerClose} />
       <Main open={open}>
         <DrawerHeader />
-        <Outlet />
+        <Box display="flex" justifyContent="center">
+          <Outlet />
+        </Box>
       </Main>
     </Box>
   );

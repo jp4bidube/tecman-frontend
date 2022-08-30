@@ -3,23 +3,16 @@ import { BreadcrumbsType } from '../types/breadcrumbs';
 import create from 'zustand';
 
 type Store = {
-  breadcrumbs: BreadcrumbsType[];
+  breadcrumb: BreadcrumbsType;
   setNewBreadcrumbs: (breadcrumbs: BreadcrumbsType) => void;
-  concatBreadcrumbs: (breadcrumbs: BreadcrumbsType) => void;
 };
 
 const useStore = create<Store>((set) => ({
-  breadcrumbs: [{ name: 'Home', path: '/', icon: <HomeIcon /> }],
-  setNewBreadcrumbs(breadcrumbs) {
+  breadcrumb: { name: 'Home', path: '/', icon: <HomeIcon /> },
+  setNewBreadcrumbs(breadcrumb) {
     set((state) => ({
       ...state,
-      breadcrumbs: [breadcrumbs],
-    }));
-  },
-  concatBreadcrumbs(breadcrumb) {
-    set((state) => ({
-      ...state,
-      breadcrumbs: [...state.breadcrumbs, breadcrumb],
+      breadcrumb,
     }));
   },
 }));

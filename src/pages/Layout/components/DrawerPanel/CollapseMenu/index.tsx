@@ -61,7 +61,7 @@ export const CollapseMenu = ({ item, index, subItems }: CollapseMenProps) => {
         >
           {subItems &&
             subItems.map((item) => (
-              <Box paddingLeft={8} paddingBottom={1}>
+              <Box paddingLeft={8} paddingBottom={1} key={item.title}>
                 <ListItemButton
                   sx={{
                     borderRadius: '8px',

@@ -1,4 +1,3 @@
-import { Build } from '@mui/icons-material';
 import {
   Box,
   Divider,
@@ -18,22 +17,17 @@ import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import { CollapseMenu } from './CollapseMenu';
 import { useNavigate } from 'react-router-dom';
 import { MenuItem, menuList } from './sideMenu';
-import useStore from '../../../../store';
+import logo from '../../../../assets/logo.svg';
 
 type DrawerPanelProps = { open: boolean; handleDrawerClose: () => void };
 
 export const DrawerPanel = ({ open, handleDrawerClose }: DrawerPanelProps) => {
-  const store = useStore();
   const navigate = useNavigate();
   const drawerWidth = 248;
   const theme = useTheme();
 
   const handleClick = (item: MenuItem) => {
-    store.setNewBreadcrumbs({
-      name: item.title,
-      path: item.path,
-      icon: item.icon,
-    });
+    navigate(item.path);
   };
 
   return (
@@ -54,14 +48,7 @@ export const DrawerPanel = ({ open, handleDrawerClose }: DrawerPanelProps) => {
     >
       <DrawerHeader style={{ justifyContent: 'space-between' }}>
         <Box display="flex" gap="2" alignItems="center">
-          <Build
-            color="primary"
-            fontSize="large"
-            sx={{ transform: 'rotate(90deg)' }}
-          />
-          <Typography variant="h4" color="primary" ml={1}>
-            TEC MAN
-          </Typography>
+          <img src={`${logo}`} width="100%" height="50" />
         </Box>
 
         <IconButton onClick={handleDrawerClose}>
@@ -77,6 +64,7 @@ export const DrawerPanel = ({ open, handleDrawerClose }: DrawerPanelProps) => {
         {menuList.map((item, index) => {
           return item.subMenu ? (
             <CollapseMenu
+              key={index}
               index={index}
               item={item}
               subItems={item.subMenuItems}

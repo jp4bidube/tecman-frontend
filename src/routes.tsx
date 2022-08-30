@@ -1,12 +1,16 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { Clients } from './pages/Clients';
-import { Employees } from './pages/Employees';
-import { Guarantees } from './pages/Guarantees';
-import { Home } from './pages/Home';
-import { Layout } from './pages/Layout';
-import { Login } from './pages/Login';
-import { ServiceOrders } from './pages/ServiceOrders';
-import { Users } from './pages/Users';
+import {
+  Clients,
+  ClientOverview,
+  Employees,
+  Guarantees,
+  Home,
+  Layout,
+  Login,
+  ServiceOrders,
+  Users,
+  UserOverview,
+} from './Pages/';
 
 export const MainRoutes = () => {
   return (
@@ -16,9 +20,11 @@ export const MainRoutes = () => {
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
           <Route path="/clients" element={<Clients />} />
+          <Route path="/clients/:id/overview" element={<ClientOverview />} />
           <Route path="/service-orders" element={<ServiceOrders />} />
           <Route path="/guarantees" element={<Guarantees />} />
           <Route path="/users" element={<Users />} />
+          <Route path="/users/:id/overview" element={<UserOverview />} />
           <Route path="/employees" element={<Employees />} />
         </Route>
       </Routes>

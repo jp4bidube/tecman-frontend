@@ -56,7 +56,7 @@ export const Login = () => {
                 alignItems="center"
                 justifyContent="center"
                 sx={{
-                  backgroundColor: theme.palette.grey[50016],
+                  backgroundColor: theme.palette.primary.light,
                   borderTop: '1px solid rgba(145,158,171,0.24)',
                   borderTopRightRadius: '8px',
                   borderTopLeftRadius: '8px',

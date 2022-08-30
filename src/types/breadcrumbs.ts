@@ -1,5 +1,6 @@
 export type BreadcrumbsType = {
   name: string;
-  path: string;
+  subhead?: string;
+  path?: string;
   icon?: React.ReactElement;
 };
